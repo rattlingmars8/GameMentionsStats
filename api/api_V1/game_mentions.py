@@ -5,7 +5,7 @@ from src.services.reddit_service import get_reddit_mentions
 from src.models.game_mentions import Response, DateRangeEnum
 from src.services.steam_service import search_game, get_follower_data
 
-from src.utils import calculate_date_range
+from src.utils import calculate_date_range, filter_stats_by_date
 
 router = APIRouter(tags=["Game Data"])
 
@@ -40,9 +40,14 @@ async def get_game_data(
         game_id, game_title = await search_game(game_name)
         print(f"Found Game: {game_title} with ID: {game_id}")
         stats = await get_follower_data(game_id)
+        filtered_stats = filter_stats_by_date(stats, start_date, end_date)
 
         return Response(
-            results=mentions_summary, total_results=total_results, stats=stats
+            game_id=game_id,
+            game_name=game_title,
+            results=mentions_summary,
+            total_results=total_results,
+            stats=filtered_stats,
         )
 
     except HTTPException as e:

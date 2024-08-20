@@ -25,6 +25,8 @@ class StatsModel(BaseModel):
 
 
 class Response(BaseModel):
+    game_name: str
+    game_id: int
     total_results: int
     results: List[MentionSummary]
     stats: list[StatsModel]

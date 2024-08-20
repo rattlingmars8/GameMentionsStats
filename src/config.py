@@ -21,6 +21,7 @@ class RedditConfig(BaseModel):
 
 class FlaresolverConfig(BaseModel):
     proxy_url: str
+    target_url: str
 
 
 class SteamConfig(BaseModel):

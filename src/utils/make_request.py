@@ -1,14 +1,15 @@
 import httpx
 from src.config import settings
 
-PROXY_URL = settings.flaresolver.proxy_url
+# PROXY_URL = settings.flaresolver.proxy_url # d
+TARGET_URL = settings.flaresolver.target_url  # p
 HEADERS = {"Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest"}
 
 
 async def make_request(url: str):
     async with httpx.AsyncClient() as client:
         response = await client.post(
-            PROXY_URL,
+            TARGET_URL,
             headers=HEADERS,
             json={
                 "cmd": f"request.get",

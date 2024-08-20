@@ -30,10 +30,10 @@ async def get_follower_data(game_id: str):
     followers_api_url = f"{settings.steam.followers_api_call}{game_id}"
     followers_anchor_url = f"https://steamdb.info/app/{game_id}/charts/#followers"
     page = await make_request(followers_anchor_url)
-    print(page["solution"]["response"])
+    # print(page["solution"]["response"])
     res = await make_request(followers_api_url)
     if not res or "solution" not in res:
         raise Exception("Failed to fetch follower data")
     dirty_data: str = res["solution"]["response"]
-    print(convert_to_custom_json(dirty_data.split(';">')[1].split("</")[0]))
+    # print(convert_to_custom_json(dirty_data.split(';">')[1].split("</")[0]))
     return convert_to_custom_json(dirty_data.split(';">')[1].split("</")[0])
