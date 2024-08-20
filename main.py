@@ -7,7 +7,7 @@ import os
 from api import router as api_router
 from src.config import settings
 
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None)
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
