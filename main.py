@@ -14,6 +14,7 @@ origins = [
     "http://localhost",
     "http://localhost:8080",
     "http://localhost:5173",
+    "https://gamementionsstats.onrender.com",
 ]
 app.add_middleware(
     CORSMiddleware,
