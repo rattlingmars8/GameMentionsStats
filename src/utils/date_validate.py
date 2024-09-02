@@ -21,5 +21,6 @@ def calculate_date_range(date_range: DateRangeEnum) -> tuple:
         raise HTTPException(status_code=400, detail="Invalid date range")
 
     start_date = end_date - delta
+    print(start_date, end_date)
 
     return start_date, end_date

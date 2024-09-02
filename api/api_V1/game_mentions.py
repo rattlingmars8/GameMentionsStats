@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Query, HTTPException
 
 from src.models.error_model import ErrorResponse
@@ -24,6 +26,8 @@ async def get_game_data(
         ...,
         description="Choose a date range: week, month, three_months, six_months, year",
     ),
+    # start_date: datetime,
+    # end_date: datetime,
 ):
     if len(game_name) < 2:
         raise HTTPException(
@@ -33,7 +37,11 @@ async def get_game_data(
     start_date, end_date = calculate_date_range(date_range)
 
     try:
-        reddit_data = await get_reddit_mentions(game_name, start_date, end_date)
+        reddit_data = await get_reddit_mentions(
+            game_name,
+            start_date,
+            end_date,
+        )
         mentions_summary = reddit_data["mentions_summary"]
         total_results = reddit_data["total_results"]
 

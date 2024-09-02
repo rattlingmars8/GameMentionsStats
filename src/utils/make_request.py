@@ -2,7 +2,7 @@ import httpx
 from src.config import settings
 
 # PROXY_URL = settings.flaresolver.proxy_url # d
-TARGET_URL = settings.flaresolver.target_url  # p
+TARGET_URL = settings.flaresolver.proxy_url  # p
 HEADERS = {"Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest"}
 
 
